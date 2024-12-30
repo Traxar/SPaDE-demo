@@ -15,6 +15,8 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
+    const spade = b.dependency("spade", .{});
+
     const lib = b.addStaticLibrary(.{
         .name = "SPaDE-demo",
         // In this case the main source file is merely a path, however, in more
@@ -35,6 +37,8 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+
+    exe.root_module.addImport("spade", spade.module("spade"));
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
