@@ -20,8 +20,8 @@ fn mul(res: anytype, a: anytype, b: anytype) void {
     const A = @TypeOf(a);
     const B = @TypeOf(b);
     if (Res != Mcol and Res != Mrow) @compileError("res must be of type Mcol or Mrow");
-    if (A != Mcol and A != Mrow) @compileError("res must be of type Mcol or Mrow");
-    if (B != Mcol and B != Mrow) @compileError("res must be of type Mcol or Mrow");
+    if (A != Mcol and A != Mrow) @compileError("a must be of type Mcol or Mrow");
+    if (B != Mcol and B != Mrow) @compileError("b must be of type Mcol or Mrow");
     res.f(add, op.mul, .{ a.t(1, 2), b.t(0, 2) });
 }
 
@@ -38,8 +38,7 @@ pub fn main() !void {
     a.set(&.{ 1, 0 }, -1);
     a.set(&.{ 1, 1 }, -2);
     a.set(&.{ 1, 2 }, -3);
-    //     / 1  2  3 \
-    // a = |         |
+    // a = / 1  2  3 \
     //     \-1 -2 -3 /
 
     const b = try Mcol.init(&.{ 4, 3 }, allocator); //allocate 4 x 3 matrix
@@ -57,7 +56,7 @@ pub fn main() !void {
     const c = try Mcol.init(&.{ 2, 4 }, allocator); //allocate 4 x 3 matrix
     defer c.deinit(allocator);
     mul(c, a, b.t(0, 1)); // c = a * b^T
-    assert(@TypeOf(b.t(0, 1)) == Mrow); //.t swaps 2 dimension
+    assert(@TypeOf(b.t(0, 1)) == Mrow); //.t swaps 2 dimensions
 
     const stdout_file = std.io.getStdOut().writer();
     var bw = std.io.bufferedWriter(stdout_file);
