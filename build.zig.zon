@@ -25,7 +25,7 @@
     .dependencies = .{
         .spade = .{
             .url = "https://github.com/Traxar/SPaDE/archive/refs/tags/v0.0.1.tar.gz",
-            .hash = "12209af15dd9af8ac0c848e8cc82bea632a092caf54d2a3a02abedcec2aeafb07426",
+            .hash = "1220659db818f7678e6860eefd23ab72fbf98d0e42db5ccd62a1a18ceb29f82f2061",
         },
     },
     .paths = .{
