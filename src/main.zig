@@ -2,7 +2,7 @@ const std = @import("std");
 const assert = std.debug.assert;
 const spade = @import("spade");
 
-const T = spade.tensor.Type(f32); //tensor base type, supports arbitrary element types
+const T = spade.Tensor(usize, f32); //tensor base type, supports arbitrary element types
 const V = T.Dense(&.{0}); //vector
 const Mcol = T.Dense(&.{ 0, 1 }); //column major matrix
 const Mrow = T.Dense(&.{ 1, 0 }); //row major matrix
